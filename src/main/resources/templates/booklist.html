@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Booklist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Books</h1>
+
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Log Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
+    <table>
+		<tr>
+		    <th>Author</th>
+		    <th>Title</th>
+		    <th>ISBN</th>
+		    <th>Year</th>
+		    <th>Genre</th>
+		</tr>  
+    	<tr th:each = "book : ${books}">
+    		<td th:text="${book.firstName} + ' ' + ${book.lastName}"></td>
+    		<td th:text="${book.title}"></td>
+    		<td th:text="${book.isbn}"></td>
+    		<td th:text="${book.year}"></td>
+    		<td th:text="${book.genre.type}"></td> 
+ 				<td><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>  
+ 				<td><a th:href="@{/modify/{id}(id=${book.id})}" class="btn btn-warning">Modify</a></td>  		
+    	</tr>
+     </table>
+	 <a href="/add">Add Book</a>    	
+</body>
+</html>
